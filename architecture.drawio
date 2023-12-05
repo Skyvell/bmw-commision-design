@@ -1,0 +1,86 @@
+<mxfile host="app.diagrams.net" modified="2023-12-05T14:32:45.259Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="CCapg20M4iXhA5IyuuRC" version="22.1.5" type="device">
+  <diagram name="Page-1" id="CprnhcaB5m-wMpzN6rBH">
+    <mxGraphModel dx="251" dy="729" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1190" y="110" width="440" height="630" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-3" value="Midas API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="1030" y="278" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-4" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;curved=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" source="YeDFQegcH8h2r3Rjm_9H-7" edge="1" target="Pw8H6CO48tIshbksqKyi-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1620" y="308" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-5" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.67;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" source="YeDFQegcH8h2r3Rjm_9H-7" target="YeDFQegcH8h2r3Rjm_9H-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PvSi0mMRjCLsmE4IRq3A-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" edge="1" parent="1" source="YeDFQegcH8h2r3Rjm_9H-7" target="YeDFQegcH8h2r3Rjm_9H-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-7" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Calculations&lt;/span&gt;" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.lambda_function;points=[[0,0.2,0,0,0],[0,0.4,0,0,0],[0,0.6,0,0,0],[0,0.8,0,0,0],[0.33,0,0,0,0],[0.67,0,0,0,0],[1,0.2,0,0,0],[1,0.4,0,0,0],[1,0.6,0,0,0],[1,0.8,0,0,0]];" parent="1" vertex="1">
+          <mxGeometry x="1312" y="269" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-8" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;AWS account - commissions calculation&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1320" y="30" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-10" value="Write calculation results to Core View" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="1690" y="150" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-11" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;curved=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" source="YeDFQegcH8h2r3Rjm_9H-12" target="YeDFQegcH8h2r3Rjm_9H-13" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-12" value="Commission matrix &amp;amp; sales targets" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" parent="1" vertex="1">
+          <mxGeometry x="1371" y="620" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-13" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Parsing&lt;/span&gt;" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.lambda_function;points=[[0,0.2,0,0,0],[0,0.4,0,0,0],[0,0.6,0,0,0],[0,0.8,0,0,0],[0.33,0,0,0,0],[0.67,0,0,0,0],[1,0.2,0,0,0],[1,0.4,0,0,0],[1,0.6,0,0,0],[1,0.8,0,0,0]];" parent="1" vertex="1">
+          <mxGeometry x="1371" y="440" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-14" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;curved=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" source="YeDFQegcH8h2r3Rjm_9H-13" edge="1" target="Pw8H6CO48tIshbksqKyi-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1659" y="347" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-15" value="Agent Sales Targets file upload (yearly)." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="1271" y="800" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-16" value="Commision Matrix file upload (yearly)." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="1445" y="800" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-18" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;curved=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" source="YeDFQegcH8h2r3Rjm_9H-15" target="YeDFQegcH8h2r3Rjm_9H-12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-19" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;curved=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" source="YeDFQegcH8h2r3Rjm_9H-16" target="YeDFQegcH8h2r3Rjm_9H-12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-24" value="1) Cronjob lambda fetches sales data from Midas API." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#178BFF;" parent="1" vertex="1">
+          <mxGeometry x="1210" y="310" width="90" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-25" value="2) Query data required for commission calculation." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#178BFF;" parent="1" vertex="1">
+          <mxGeometry x="1400" y="310" width="90" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-26" value="3) Write result of commission calc. to Core View." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#178BFF;" parent="1" vertex="1">
+          <mxGeometry x="1365" y="152" width="90" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-27" value="1) Files uploaded to S3." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#12FF1A;" parent="1" vertex="1">
+          <mxGeometry x="1365" y="750" width="90" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-28" value="2) Lambda triggered by event source." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#12FF1A;" parent="1" vertex="1">
+          <mxGeometry x="1404" y="540" width="90" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="YeDFQegcH8h2r3Rjm_9H-29" value="3) Parsed data inserted into database." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#12FF1A;" parent="1" vertex="1">
+          <mxGeometry x="1530" y="430" width="90" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="Pw8H6CO48tIshbksqKyi-1" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;DynamoDB&lt;/span&gt;&lt;/div&gt;" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" parent="1" vertex="1">
+          <mxGeometry x="1506" y="269" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="PvSi0mMRjCLsmE4IRq3A-4" value="&lt;h1&gt;Archtecture overview&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1230" width="300" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
