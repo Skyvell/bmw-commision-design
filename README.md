@@ -4,7 +4,7 @@
 ## Database Design
 A file containing montly volume targets for each agent will be uploaded and parsed into the VolumeTargets table once a year. In addition, a file containing a commission matrix for each market will be uploaded and parsed into the CommissionMatrixes table, yearly.
 
-![Initial draft of architecture](database.png)
+![Initial draft of architecture](database.svg)
 
 
 
