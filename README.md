@@ -1,8 +1,8 @@
 # bmw_analysis_and_design
 
 
-## Database Design
-Volume targets will be parsed into the VolumeTargets table and commission matrixes will be parseed into the ComissionMatrixes table. Since the partition key does not uniquely identify an item, a composite key will be used.
+## Database design
+Volume targets will be parsed into the VolumeTargets table and commission matrixes will be parseed into the CommissionMatrixes table. Since the partition key does not uniquely identify an item, a composite key will be used.
 
 ![Initial draft of architecture](database.svg)
 
