@@ -2,7 +2,7 @@
 
 
 ## Database Design
-Volume targets will be parsed into the VolumeTargets table and commission matrixes will be parseed into the ComissionMatrixes table.
+Volume targets will be parsed into the VolumeTargets table and commission matrixes will be parseed into the ComissionMatrixes table. Since the partition key does not uniquely represent an item, a composite key will be used.
 
 ![Initial draft of architecture](database.svg)
 
