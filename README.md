@@ -2,7 +2,7 @@
 
 
 ## Database Design
-Volume targets will be parsed into the VolumeTargets table and comission matrixes will be parseed into the ComissionMatrixes table. In VolumeTargets the partition key of Agent and the sort key of month will make up the unique key. In CommissionMatrixes the partition key of market and sort key of year will make up the unique key.
+Volume targets will be parsed into the VolumeTargets table and commission matrixes will be parseed into the ComissionMatrixes table.
 
 ![Initial draft of architecture](database.svg)
 
