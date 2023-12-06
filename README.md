@@ -53,7 +53,7 @@ ranges = [
     ["lower_bound_n", "upper_bound_n"],
 ]
 ```
-These are needed to find the right indexes for each range, in order to lockup the right element in the matrix.
+These are needed to find the right indexes for each range, in order to lockup the right element in the matrix. The PenetrationRanges will need to be reversed in order for the indexes to represent the rows in the matrix correctly.
 
 
 ## Questions
