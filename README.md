@@ -21,27 +21,31 @@
 ## Sales volume targets file structure
 
 ## Parsing lambda
-The parsing lambda will ta an in
+The parsing lambda will be triggered via an S3 Event Notificationm which occurs when a file is uploaded to the S3 bucket.
 
-Psueducode:
-1. File gets uploaded to s3 bucket.
-2. This triggers the parsing lambda.
+The lambda will:
+- Identify if this file is a Comission Matrix file or a Target Sales Volum file. This will be done by checking the name of the file. It will follow a certain pattern depending on which file it is.
+- Parse the data into DynamoDB.
 
-Lambda:
-1. Identify if this file is a matrix or sales volume target file. This could be done by checking the name of the file. The file-naming convention needs to be agree to in advance.
+**If it is an Comission Matrix file**:**
+1. Load the data from the file with Pandas.
 
-If the file is a matrix file:
-1. Load the data file with Pandas.
+For every Matrix in the data:
+2. Extract PenetrationRate ranges, put them in a list and reverse the list (alternatively it is reversed after reading from DynamoDB by the calculation lambda).
+3. Extract AgentSalesTargetRate ranges and put them in a list.
+4. Extract the matrix as a list of lists.
+5. Construct a DynamoDB item according to the database schema.
+6. Write the item to DynamoDB.
 
-For every matrix in file:
-- Extract penetration ranges and put in a list: [[lower_bound, upper_bound], [lower_bound_n, upper bound]]. A range is on the form [lower_bound, upper_bound).
-- Extract the matrix as a list of lists.
-- Construct item and insert into DynamoDB.
+**If it is an Target Sales Volum file**:
+1. Load the data from the file with Pandas.
 
+For every record/row in the data:
+2. Construct an item for every montly target of the agent in that record.
+3. Write those items to DynamoDB using BatchWriteItem.
 
 ## Database design
 Volume targets will be parsed into the VolumeTargets table. Commission matrixes will be parseed into the CommissionMatrixes table. Since the partition key does not uniquely identify an item, a composite key will be used. 
-
 
 ![Initial draft of architecture](database.svg)
 
