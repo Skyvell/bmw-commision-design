@@ -27,22 +27,22 @@ The lambda will:
 - Identify if this file is a Comission Matrix file or a Target Sales Volum file. This will be done by checking the name of the file. It will follow a certain pattern depending on which file it is.
 - Parse the data into DynamoDB.
 
-**If it is an Comission Matrix file**:**
+**If it is an Comission Matrix file:**
 1. Load the data from the file with Pandas.
 
 For every Matrix in the data:
-2. Extract PenetrationRate ranges, put them in a list and reverse the list (alternatively it is reversed after reading from DynamoDB by the calculation lambda).
-3. Extract AgentSalesTargetRate ranges and put them in a list.
-4. Extract the matrix as a list of lists.
-5. Construct a DynamoDB item according to the database schema.
-6. Write the item to DynamoDB.
+1. Extract PenetrationRate ranges, put them in a list and reverse the list (alternatively it is reversed after reading from DynamoDB by the calculation lambda).
+2. Extract AgentSalesTargetRate ranges and put them in a list.
+3. Extract the matrix as a list of lists.
+4. Construct a DynamoDB item according to the database schema.
+5. Write the item to DynamoDB.
 
 **If it is an Target Sales Volum file**:
 1. Load the data from the file with Pandas.
 
 For every record/row in the data:
-2. Construct an item for every montly target of the agent in that record.
-3. Write those items to DynamoDB using BatchWriteItem.
+1. Construct an item for every montly target of the agent in that record.
+2. Write those items to DynamoDB using BatchWriteItem.
 
 ## Database design
 Volume targets will be parsed into the VolumeTargets table. Commission matrixes will be parseed into the CommissionMatrixes table. Since the partition key does not uniquely identify an item, a composite key will be used. 
