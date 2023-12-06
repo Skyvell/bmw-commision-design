@@ -53,7 +53,7 @@ ranges = [
     ["lower_bound_n", "upper_bound_n"],
 ]
 ```
-each range in the list representing a index to the right row or column in the matrix. The PenetrationRanges will list need to be reversed in order for the index or each range to represent the correct row in the matrix.
+Each range in the list representing a index to the right row or column in the matrix. The PenetrationRanges will list need to be reversed in order for the index or each range to represent the correct row in the matrix.
 
 
 ## Questions
