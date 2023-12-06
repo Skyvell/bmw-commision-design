@@ -41,7 +41,7 @@ For every matrix in file:
 
 ## Database design
 Volume targets will be parsed into the VolumeTargets table. Commission matrixes will be parseed into the CommissionMatrixes table. Since the partition key does not uniquely identify an item, a composite key will be used. The PenetrationRanges and VolumeTargetRanges attributes will be on the form: 
-```
+```python
 [[lower_bound_1, upper_bound_1], [lower_bound_2, upper_bound_2], [lower_bound_n, upper_bound_n]].
 ```
 These are needed to find the right indexes for each range, in order to lockup the right element in the matrix.
