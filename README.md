@@ -68,7 +68,7 @@ What to decide on:
 Book a meeting for this.
 
 ## Sales volume targets file structure
-This is how the Agent Sales Target Volumes data will look.
+This is how the Agent Sales Target Volumes data will look. This looks pretty straigh forward from a data processing perspective.
 
 ![Volume Targets Data](./data_formats/volume_targets_dummy_data.png)
 
