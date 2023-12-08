@@ -63,13 +63,20 @@ This is how the Matrix data will be structured in Excel.
 What to decide on:
 - Naming convention for matrix file (need to uniquely identify year and matrix file).
 - File extention (.xlsx works fine). Anything that can be loaded with Pandas.
-- Standardized Matrix placement in excel file. This could be one matrix per page, or every matrix separated by an empty column. Name of matrix market should be included in file.
+- Standardized Matrix placement in excel file. This could be one matrix per page with the market being the name of the page, or every matrix separated by an empty column with the name of the matrix market should be included in file.
 
-
-
+Book a meeting for this.
 
 ## Sales volume targets file structure
+This is how the Agent Sales Target Volumes data will look.
+
 ![Volume Targets Data](./data_formats/volume_targets_dummy_data.png)
+
+What to decide on: 
+- Naming convention (need to uniquely identify year and agent sales targets file).
+- File extention (.xlsx works fine). Anything that can be loaded with Pandas.
+
+Discuss in meeting.
 
 ## Parsing lambda
 The parsing lambda will be triggered via an S3 Event Notificationm which occurs when a file is uploaded to the S3 bucket.
