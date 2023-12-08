@@ -26,6 +26,11 @@ Commission is calculated from the matrix by using penetration_rate and target_vo
 - List of terminated contracts for the previous month.
 - Commission the agent recieved for this contract (should be deducted if contract terminated within 6 months).
 
+**Flow**
+Get data from database:
+- Get all delivered contracts
+- Get all NSC Car sales.
+
 ## Midas API
 
 ## Core View integration
@@ -36,6 +41,8 @@ Commission is calculated from the matrix by using penetration_rate and target_vo
 
 ## Parsing lambda
 The parsing lambda will be triggered via an S3 Event Notificationm which occurs when a file is uploaded to the S3 bucket.
+
+![Parsing lambda](parsing_lambda.svg)
 
 The lambda will:
 - Identify if this file is a Comission Matrix file or a Target Sales Volum file. This will be done by checking the name of the file. It will follow a certain pattern depending on which file it is.
