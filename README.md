@@ -11,6 +11,20 @@
 ![Initial draft of architecture](architecture.svg)
 
 ## Calculation lambda
+The calculation labmda should be triggered via a cronjob at the first date of every month. 
+
+**Data needed for commission caculcation:**
+- Total sales for specific agents in every market for specific agents.
+- Total sales for all agents combined in every market.
+
+penetration_rate = sales_volume_by_agent / total_sales_volume
+target_volume_achieved = sales_volume_by_agent / target_sales_volume_for_agent
+
+Commission is calculated from the matrix by using penetration_rate and target_volume_achieved.
+
+**Data needed for clawback calculations:**
+- List of terminated contracts for the previous month.
+- Commission the agent recieved for this contract (should be deducted if contract terminated within 6 months).
 
 ## Midas API
 
@@ -37,7 +51,7 @@ For every Matrix in the data:
 4. Construct a DynamoDB item according to the database schema.
 5. Write the item to DynamoDB.
 
-**If it is an Target Sales Volum file**:
+**If it is an Target Sales Volume file**:
 1. Load the data from the file with Pandas.
 
 For every record/row in the data:
