@@ -1,5 +1,25 @@
 # bmw_analysis_and_design
 
+## Project requirements
+Tool requirements:
+- Github Actions for CI/CD.
+- Terraform for infrastructure.
+
+Throughput needs:
+Uploaded files are relatively small. Will read and write 
+1. Requirement Gathering and Analysis
+Duration: 1-2 weeks
+Activities:
+Define and document the project scope.
+Does BMW have requirement for certain tools (e.g. programming language, CI/CD, CDK vs cloudformation)?
+Understand the data formats, security requirements, and compliance needs.
+Identify structure of incomming data from external AWS account.
+Identify the structure and size of the data in the files to be uploaded.
+Understand the scalability/throughput needs of the product.
+Indentify AWS components and external integrations.
+Core View does not seem to have its own API. Investigate how to interact with Core View.
+Output: A detailed requirement document.
+
 ## Projects score
 - Commission paid retroactively for the previous month based on penetration rate and volume sales target achievement.
 - Clawback of mentioned commission if the contract was canceled within a 6 month period.
@@ -36,8 +56,20 @@ Get data from database:
 ## Core View integration
 
 ## Commission matrix file structure
+This is how the Matrix data will be structured in Excel. 
+
+![Commision Matrix Data](./data_formats/matrix_dummy_data.png)
+
+What to decide on:
+- Naming convention for matrix file (need to uniquely identify year and matrix file).
+- File extention (.xlsx works fine). Anything that can be loaded with Pandas.
+- Standardized Matrix placement in excel file. This could be one matrix per page, or every matrix separated by an empty column. Name of matrix market should be included in file.
+
+
+
 
 ## Sales volume targets file structure
+![Volume Targets Data](./data_formats/volume_targets_dummy_data.png)
 
 ## Parsing lambda
 The parsing lambda will be triggered via an S3 Event Notificationm which occurs when a file is uploaded to the S3 bucket.
