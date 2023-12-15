@@ -79,7 +79,7 @@ What to decide on:
 Discuss in meeting.
 
 ## Parsing lambda
-The parsing lambda will be triggered via an S3 Event Notificationm which occurs when a file is uploaded to the S3 bucket.
+The parsing lambda will be triggered via an S3 Event Notification which occurs when a file is uploaded to the S3 bucket.
 
 ![Parsing lambda](parsing_lambda.svg)
 
@@ -103,6 +103,9 @@ For every Matrix in the data:
 For every record/row in the data:
 1. Construct an item for every montly target of the agent in that record.
 2. Write those items to DynamoDB using BatchWriteItem.
+
+Considerations:
+- Pandas is a pretty big library. Lambda limitation: 50MB zipped, 250MB unzipped. I might need to use a lightweight version of Pandas; this can be acheived with lambda layers. If the the package standard package fits into the size requirements, it might still be a good idea to use lambda layers to increase deployment speed.
 
 ## Database design
 Volume targets will be parsed into the VolumeTargets table. Commission matrixes will be parseed into the CommissionMatrixes table. Since the partition key does not uniquely identify an item, a composite key will be used. 
