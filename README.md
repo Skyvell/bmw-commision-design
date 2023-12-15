@@ -119,6 +119,39 @@ ranges = [
 ```
 Each range in the list representing a index to the right row or column in the matrix. The PenetrationRanges list will need to be reversed in order for the index or each range to represent the correct row in the matrix.
 
+Another option:
+```json
+{
+  "matrix": [
+    [
+      1.02,
+      1.03,
+      1.04
+    ],
+    [
+      1.02,
+      1.03,
+      1.05
+    ],
+    [
+      1.03,
+      1.02,
+      1.03
+    ]
+  ],
+  "x-axis": [
+    0.6,
+    0.7,
+    0.8
+  ],
+  "y-axis": [
+    0.6,
+    0.7,
+    0.8
+  ]
+}
+
+```
 
 ## Questions
 - Will there be multiple markets in volume targets?
