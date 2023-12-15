@@ -4,16 +4,20 @@
 
 ### Project scope:
 
+#### Functionality
+- Upload Excel data files containing Comission Matrixes to AWS. These data should be easily accessible in order to do commission calculations. Should support overwriting of Matrixes.
+- Upload Excel data files containing agent volume target sales data. Should support overwriting of agent sales targets.
+- Montly read sales data from Midas API for the previous month, calculate the commission earned by agents and write this data to CoreView.
+- Montly read the clawback list, see if any of the contracts were canceled within 6 months. If it was canceled within 6 months, the commission that was paid for that contract should be nullfied.
 
-
-### Tools:
+#### Tools
 - Github Actions for CI/CD (requirement BWM).
 - Terraform for infrastructure (requirement BMW).
 - Python will be used for lambda development since this project is mostly about data processing, which Python excels at.
 
-### Throughput needs:
-The files to be uploaded are relativley small -> use lambda for parsing.
-The data to be read and processed monthly from midas is not very substantial -> lambda used for this.
+#### Throughput needs
+- The files to be uploaded are relativley small. Lambda will be used lambda for parsing.
+- The data to be read and processed monthly from midas is not very substantial. Lambda used for this as well.
 
 
 1. Requirement Gathering and Analysis
