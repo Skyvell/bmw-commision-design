@@ -1,12 +1,21 @@
 # bmw_analysis_and_design
 
 ## Project requirements
-Tool requirements:
-- Github Actions for CI/CD.
-- Terraform for infrastructure.
 
-Throughput needs:
-Uploaded files are relatively small. Will read and write 
+### Project scope:
+
+
+
+### Tools:
+- Github Actions for CI/CD (requirement BWM).
+- Terraform for infrastructure (requirement BMW).
+- Python will be used for lambda development since this project is mostly about data processing, which Python excels at.
+
+### Throughput needs:
+The files to be uploaded are relativley small -> use lambda for parsing.
+The data to be read and processed monthly from midas is not very substantial -> lambda used for this.
+
+
 1. Requirement Gathering and Analysis
 Duration: 1-2 weeks
 Activities:
