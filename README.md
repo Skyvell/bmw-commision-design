@@ -119,7 +119,14 @@ ranges = [
 ```
 Each range in the list representing a index to the right row or column in the matrix. The PenetrationRanges list will need to be reversed in order for the index or each range to represent the correct row in the matrix.
 
-Another option:
+Another option would be to store the matrix and its x-axis and y-axis ranges as a single json object in the database. This would be good for loading the structure into a python object. Something like:
+
+```python
+commission_matrix = CommissionMatrix.from_json(json)
+]
+```
+
+Here is an example how a commission matrix would be parsed into json:
 ```json
 {
   "matrix": [
