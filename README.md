@@ -123,7 +123,6 @@ Another option would be to store the matrix and its x-axis and y-axis ranges as 
 
 ```python
 commission_matrix = CommissionMatrix.from_json(json)
-]
 ```
 
 Here is an example how a commission matrix would be parsed into json:
