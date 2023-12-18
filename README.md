@@ -2,12 +2,12 @@
 
 ## Project requirements
 
-### Project scope:
+### Project scope
 
 #### Functionality
 - Upload Excel data files containing Comission Matrixes to AWS. These data should be easily accessible in order to do commission calculations. Should support overwriting of Matrixes.
 - Upload Excel data files containing agent volume target sales data. Should support overwriting of agent sales targets.
-- Montly read sales data from Midas API for the previous month, calculate the commission earned by agents and write this data to CoreView.
+- Montly read sxales data from Midas API for the previous month, calculate the commission earned by agents and write this data to CoreView.
 - Montly read the clawback list, see if any of the contracts were canceled within 6 months. If it was canceled within 6 months, the commission that was paid for that contract should be nullfied.
 
 #### Tools
@@ -18,6 +18,9 @@
 #### Throughput needs
 - The files to be uploaded are relativley small. Lambda will be used lambda for parsing.
 - The data to be read and processed monthly from midas is not very substantial. Lambda used for this as well.
+
+#### AWS components
+AWS s3, Lambda, DynamoDB will cover the scalability and throuhput needs of the product
 
 
 1. Requirement Gathering and Analysis
@@ -45,6 +48,31 @@ Output: A detailed requirement document.
 
 ## Calculation lambda
 The calculation labmda should be triggered via a cronjob at the first date of every month. 
+
+```python
+class CommissionMatrix:
+    def __init__(self, json):
+        self.matrix
+        self.x_axis
+        self.y_axis
+
+    def compute_commission(self, penrate: float, volume: float, sales_amount: float):
+        # Use helper functions to find row and column.
+        # Extract the commission percentage to be applied.
+        # Apply commission percentage.
+        # Return commission to add.
+
+    def _find_row(self, penrate: float):
+        # Iterate through the y-axis and find between which values the penetrationrate lands.
+        # Get the index.
+        # Reverse the index (y-axis index starts from the bottom left corner but that is not how matrices are indexed).
+        # reverse_index = len(y_axis) - 1 - index
+
+    def _find_column(self, volume: float):
+        # Iterate through the x-axis to find where between which value the penetration index lands.
+        # Get the index.
+```
+
 
 **Data needed for commission caculcation:**
 - Total sales for specific agents in every market for specific agents.
