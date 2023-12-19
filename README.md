@@ -34,6 +34,28 @@ This is how the Agent Sales Target Volumes data will look.
 
 This looks pretty straigh forward from a data processing perspective. The files should be uploaded in .xlsx format. The .xlsx files should follow a pre-determined naming convention, in order to uniquely identify that the file is a Sales Target file, and which year it represents. I suggest sales_targets_yyyy.xlsx.
 
+### Data needed from midas
+To do the commission calculations the following data is needed from Midas:
+- The total number of financed contracts per agent per market sold (total_number_of_financed_contracts_sold).
+- The total number of contracts per agent per market sold (total_number_of_contracts_sold).
+- Total financed sales volume per agent per market.
+
+This is how the penetration rate is calculated:
+
+```
+penetration_rate = total_number_of_financed_contracts_sold / total_number_of_contracts_sold
+```
+
+This is how the target volume achieved is calculated:
+```
+target_volume_achieved = financed_sales_volume_by_agent / target_financed_sales_volume_by_agent
+```
+
+The target financed sales volume (target_financed_sales_volume_by_agent) is pulled from DynamoDB and then we have all the data to extract the commission rate form the Matrix, which is also pulled from DynamoDB.
+
+To calculate if there should be any clawback from previously sold contract we also need:
+- The clawback list.
+
 ### Midas API 
 **TODO - Waiting for documentation.**
 
