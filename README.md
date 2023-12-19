@@ -2,45 +2,41 @@
 
 ## Project requirements
 
-### Project scope
-
-#### Functionality
+### Functionality
 - Upload Excel data files containing Comission Matrixes to AWS. These data should be easily accessible in order to do commission calculations. Should support overwriting of Matrixes.
 - Upload Excel data files containing agent volume target sales data. Should support overwriting of agent sales targets.
 - Montly read sxales data from Midas API for the previous month, calculate the commission earned by agents and write this data to CoreView.
 - Montly read the clawback list, see if any of the contracts were canceled within 6 months. If it was canceled within 6 months, the commission that was paid for that contract should be nullfied.
 
-#### Tools
+### Tools
 - Github Actions for CI/CD (requirement BWM).
 - Terraform for infrastructure (requirement BMW).
 - Python will be used for lambda development since this project is mostly about data processing, which Python excels at.
 
-#### Throughput needs
-- The files to be uploaded are relativley small. Lambda will be used lambda for parsing.
+### Throughput needs
+- The files to be uploaded are relativley small. Lambda will be used for parsing.
 - The data to be read and processed monthly from midas is not very substantial. Lambda used for this as well.
 
-#### AWS components
-AWS s3, Lambda, DynamoDB will cover the scalability and throuhput needs of the product
+### AWS components
+AWS s3, Lambda, DynamoDB will cover the scalability and throuhput needs of the product.
 
+### Commission matrix file structure and data
+This is how the Matrix data will be structured in Excel.
 
-1. Requirement Gathering and Analysis
-Duration: 1-2 weeks
-Activities:
-Define and document the project scope.
-Does BMW have requirement for certain tools (e.g. programming language, CI/CD, CDK vs cloudformation)?
-Understand the data formats, security requirements, and compliance needs.
-Identify structure of incomming data from external AWS account.
-Identify the structure and size of the data in the files to be uploaded.
-Understand the scalability/throughput needs of the product.
-Indentify AWS components and external integrations.
-Core View does not seem to have its own API. Investigate how to interact with Core View.
-Output: A detailed requirement document.
+![Commision Matrix Data](./data_formats/matrix_dummy_data.png)
 
-## Projects score
-- Commission paid retroactively for the previous month based on penetration rate and volume sales target achievement.
-- Clawback of mentioned commission if the contract was canceled within a 6 month period.
-- The new commissions should be paid out for FSM contracts (excluding Staff & Service Loaner contracts (product), Internal BMW Group Staff contracts, Prolongation andTransfer of Contract).
+The matrix placement in the excel file should follow a standardised layout. A proposition is that the first matrix should be placed in the top leftcorner and every new matrix placed to the right of the previous matrix, with a blank column in between. Another option is a new matrix on every "page"of the excel document. The files should be upploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order touniquely identify that the file is a Matrix file and which year the matrixes should apply to. I suggest matrix_yyyy.xlsx, but anything that follows thepreviously mentioned prerequisites should suffice.
 
+### Sales volume targets file structure and data
+This is how the Agent Sales Target Volumes data will look.
+
+![Volume Targets Data](./data_formats/volume_targets_dummy_data.png)
+
+This looks pretty straigh forward from a data processing perspective. The files should be upploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order to uniquely identify that the file is a Sales Target file and which year it represents. I suggest sales_targets_yyyy.xlsx.
+
+### Midas API
+
+### Core View integration
 
 ## Architecture overview 
 
@@ -92,30 +88,21 @@ Get data from database:
 - Get all delivered contracts
 - Get all NSC Car sales.
 
-## Midas API
 
-## Core View integration
 
-## Commission matrix file structure
+## Commission matrix file structure and data
 This is how the Matrix data will be structured in Excel.
 
 ![Commision Matrix Data](./data_formats/matrix_dummy_data.png)
 
-The matrix placement in the excel file should follow a standardised layout. A proposition is that the first matrix should be placed in the top leftcorner and every new matrix placed to the right of the previous matrix, with a blank column in between. Another option is a new matrix on every "page"of the excel document. The files should be upploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order touniquely identify that the file is a Matrix file and which year the matrixes should apply to. I suggest matrix_yyyy.xlsx, but anything that follows thepreviously mentioned prerequisites should suffice. 
+The matrix placement in the excel file should follow a standardised layout. A proposition is that the first matrix should be placed in the top leftcorner and every new matrix placed to the right of the previous matrix, with a blank column in between. Another option is a new matrix on every "page"of the excel document. The files should be upploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order to uniquely identify that the file is a Matrix file and which year the matrixes should apply to. I suggest matrix_yyyy.xlsx, but anything that follows the previously mentioned pre-requisites should suffice. 
 
-
-
-
-## Sales volume targets file structure
-This is how the Agent Sales Target Volumes data will look. This looks pretty straigh forward from a data processing perspective.
+## Sales volume targets file structure and Data
+This is how the Agent Sales Target Volumes data will look.
 
 ![Volume Targets Data](./data_formats/volume_targets_dummy_data.png)
 
-What to decide on: 
-- Naming convention (need to uniquely identify year and agent sales targets file).
-- File extention (.xlsx works fine). Anything that can be loaded with Pandas.
-
-Discuss in meeting.
+This looks pretty straigh forward from a data processing perspective. The files should be upploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order to uniquely identify that the file is a Sales Target file and which year it represents. I suggest sales_targets_yyyy.xlsx.
 
 ## Parsing lambda
 The parsing lambda will be triggered via an S3 Event Notification which occurs when a file is uploaded to the S3 bucket.
