@@ -88,22 +88,6 @@ Get data from database:
 - Get all delivered contracts
 - Get all NSC Car sales.
 
-
-
-## Commission matrix file structure and data
-This is how the Matrix data will be structured in Excel.
-
-![Commision Matrix Data](./data_formats/matrix_dummy_data.png)
-
-The matrix placement in the excel file should follow a standardised layout. A proposition is that the first matrix should be placed in the top leftcorner and every new matrix placed to the right of the previous matrix, with a blank column in between. Another option is a new matrix on every "page"of the excel document. The files should be upploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order to uniquely identify that the file is a Matrix file and which year the matrixes should apply to. I suggest matrix_yyyy.xlsx, but anything that follows the previously mentioned pre-requisites should suffice. 
-
-## Sales volume targets file structure and Data
-This is how the Agent Sales Target Volumes data will look.
-
-![Volume Targets Data](./data_formats/volume_targets_dummy_data.png)
-
-This looks pretty straigh forward from a data processing perspective. The files should be upploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order to uniquely identify that the file is a Sales Target file and which year it represents. I suggest sales_targets_yyyy.xlsx.
-
 ## Parsing lambda
 The parsing lambda will be triggered via an S3 Event Notification which occurs when a file is uploaded to the S3 bucket.
 
