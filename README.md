@@ -38,14 +38,14 @@ This looks pretty straigh forward from a data processing perspective. The files 
 
 #### Commission calculation
 To do the commission calculations the following data is needed from Midas:
-- The total number of financed contracts per agent per market sold (total_number_of_financed_contracts_sold).
-- The total number of contracts per agent per market sold (total_number_of_contracts_sold).
+- The total number of financed contracts per agent per market (total_number_of_financed_contracts).
+- The total number of contracts per agent per market (total_number_of_contracts).
 - Total financed sales volume per agent per market.
 
 This is how the penetration rate is calculated:
 
 ```
-penetration_rate = total_number_of_financed_contracts_sold / total_number_of_contracts_sold
+penetration_rate = total_number_of_financed_contracts / total_number_of_contracts
 ```
 
 This is how the target volume achieved is calculated:
@@ -53,11 +53,10 @@ This is how the target volume achieved is calculated:
 target_volume_achieved = financed_sales_volume_by_agent / target_financed_sales_volume_by_agent
 ```
 
-The target financed sales volume (target_financed_sales_volume_by_agent) is pulled from DynamoDB and then we have all the data to extract the commission rate form the Matrix, which is also pulled from DynamoDB.
+The rest of the data required for the commission calculation is pulled from DynamoDB (commission matrix and target financed sales volumes).
 
 #### Clawback calculation
-To calculate if there should be any clawback from previously sold contract we also need:
-- The clawback list.
+A clawback list from Midas, which will be used to determine if there should be any clawbacks on previously payed issued commissions.
 
 ### Midas API 
 **TODO - Waiting for documentation.**
