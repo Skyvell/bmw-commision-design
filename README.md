@@ -84,6 +84,7 @@ This should be done for every agent:
 7. Apply commission to all contracts.
 8. Update CoreView with this new commission.
 
+TODO: Add more details when I know how to interact with Midas and CoreView.
 
 ```python
 class CommissionMatrix:
