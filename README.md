@@ -71,7 +71,7 @@ Event-driven serverless architecture will be used for all functionality. The fun
 
 ![Initial draft of architecture](architecture.svg)
 
-## Calculation lambda
+### Calculation lambda
 The calculation lamda should be triggered via a cronjob at the first date of every month.
 
 ```python
@@ -116,34 +116,28 @@ Get data from database:
 - Get all delivered contracts
 - Get all NSC Car sales.
 
-## Parsing lambda
-The parsing lambda will be triggered via an S3 Event Notification which occurs when a file is uploaded to the S3 bucket.
+### Parsing lambda
+The parsing lambda will be triggered via an S3 Event Notification which occurs when a file is uploaded to the S3 bucket. The lambda will identify if the uploaded file is a Comission Matrix file or a Target Sales Volume file. This will be done by checking the name of the file. Depending on if the file is a Commission Matrix file or a Target Sales Volume file, different flows will be executed.
 
-![Parsing lambda](parsing_lambda.svg)
+#### Commission Matrix file
+The matrix data will be loaded with Pandas.
 
-The lambda will:
-- Identify if this file is a Comission Matrix file or a Target Sales Volum file. This will be done by checking the name of the file. It will follow a certain pattern depending on which file it is.
-- Parse the data into DynamoDB.
-
-**If it is an Comission Matrix file:**
-1. Load the data from the file with Pandas.
-
-For every Matrix in the data:
-1. Extract PenetrationRate ranges, put them in a list and reverse the list (alternatively it is reversed after reading from DynamoDB by the calculation lambda).
-2. Extract AgentSalesTargetRate ranges and put them in a list.
-3. Extract the matrix as a list of lists.
+For every Matrix in the data, the followind instructions will be executed:
+1. Extract the x-axis of the Matrix.
+2. Extract the y-axis of the Matrix.
+3. Extract the matrix itself.
 4. Construct a DynamoDB item according to the database schema.
 5. Write the item to DynamoDB.
 
-**If it is an Target Sales Volume file**:
-1. Load the data from the file with Pandas.
+#### Target Sales Volume file
+The Target Sales Volume data will be loaded with Pandas.
 
-For every record/row in the data:
+For every record/row in the data the following instructions will be executed:
 1. Construct an item for every montly target of the agent in that record.
-2. Write those items to DynamoDB using BatchWriteItem.
+2. Write those items to DynamoDB using the BatchWriteItem method.
 
-Considerations:
-- Pandas is a pretty big library. Lambda limitation: 50MB zipped, 250MB unzipped. I might need to use a lightweight version of Pandas; this can be acheived with lambda layers. If the the package standard package fits into the size requirements, it might still be a good idea to use lambda layers to increase deployment speed.
+#### Considerations
+Pandas is a big library. Lambda has some size limitations; 50MB zipped and 250MB unzipped. A lightweight version of Pandas might be needed; this can be acheived with lambda layers. If the the standard Pandas package fits into the size requirements, it might still be a good idea to use lambda layers to increase deployment speed.
 
 ## Database design
 Volume targets will be parsed into the VolumeTargets table. Commission matrixes will be parsed into the CommissionMatrixes table. Since the partition key does not uniquely identify an item, a composite key will be used. 
