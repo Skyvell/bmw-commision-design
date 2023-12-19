@@ -3,8 +3,8 @@
 ## Project requirements
 
 ### Functionality
-- Upload Excel data files containing Commission Matrices to AWS. These data should be easily accessible in order to do commission calculations. Should support overwriting of Matrices.
-- Upload Excel data files containing agent volume target sales data. Should support overwriting of agent sales targets.
+- Upload Excel files containing Commission Matrices to AWS. This data should be easily accessible in order to do commission calculations. Should support overwriting of Matrices.
+- Upload Excel files containing Agent Volume Target Sales data. Should support overwriting of agent sales targets.
 - Montly read sales data from Midas API for the previous month, calculate the commission earned by agents, and write this data to CoreView.
 - Montly read the clawback list, see if any of the contracts were cancelled within 6 months. If it was cancelled within 6 months, the commission that was paid for that contract should be nullified.
 
@@ -15,24 +15,24 @@
 
 ### Throughput needs
 - The files to be uploaded are relatively small. Lambda will be used for parsing.
-- The data to be read and processed monthly from midas is not very substantial. Lambda will be used for this as well.
+- The data to be read and processed monthly from Midas is not very substantial. Lambda will be used for this as well.
 
 ### AWS components
-AWS s3, Lambda, DynamoDB will cover the scalability and throughput needs of the product.
+AWS S3, Lambda, DynamoDB will cover the scalability and throughput needs of the product.
 
-### Commission matrix file structure and data
+### Commission matrix file structure
 This is how the Matrix data will be structured in Excel.
 
 ![Commision Matrix Data](./data_formats/matrix_dummy_data.png)
 
 The matrix placement in the excel file should follow a standardised layout. A proposition is that the first matrix should be placed in the top left corner, and every new matrix placed to the right of the previous matrix, with a blank column in between. Another option is a new matrix on every "page" of the excel document. The files should be uploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order to uniquely identify that the file is a Matrix file, and which year the matrices should apply to. I suggest matrix_yyyy.xlsx, but anything that follows the previously mentioned prerequisites should suffice.
 
-### Sales volume targets file structure and data
+### Sales volume targets file structure
 This is how the Agent Sales Target Volumes data will look.
 
 ![Volume Targets Data](./data_formats/volume_targets_dummy_data.png)
 
-This looks pretty straight forward from a data processing perspective. The files should be uploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order to uniquely identify that the file is a Sales Target file, and which year it represents. I suggest sales_targets_yyyy.xlsx.
+This looks pretty straight forward from a data processing perspective. The files should be uploaded in .xlsx format. As with the Matrix files, these files should follow a predetermined naming convention, in order to uniquely identify that the file is a Sales Target file, and which year it represents. I suggest sales_targets_yyyy.xlsx.
 
 ### Data needed from Midas
 
@@ -56,7 +56,7 @@ target_volume_achieved = financed_sales_volume_by_agent / target_financed_sales_
 The rest of the data required for the commission calculation is pulled from DynamoDB (commission matrix and target financed sales volumes).
 
 #### Clawback calculation
-A clawback list will be fetched from Midas. The clawback lists contain a list of terminated contracts the previous month. This list will be used to determine if there should be any clawbacks on previously issued commissions. 
+A clawback list will be fetched from Midas. The clawback lists contain a list of terminated contracts for the previous month. This list will be used to determine if there should be any clawbacks on previously issued commissions. 
 
 ### Midas API 
 **TODO - Waiting for documentation.**
@@ -73,6 +73,17 @@ Event-driven serverless architecture will be used for all functionality. The fun
 
 ### Calculation lambda
 The calculation lambda should be triggered via a Cronjob at the first date of every month.
+
+This should be done for every agent:
+1. From Midas, retrieve all contracts sold by this agent last month. 
+2. From DynamoDB, retrieve the Sales Target Data for this agent for last month.
+3. Compute the penetration rate.
+4. Compute the percentage of volume target achieved.
+5. From DynamoDB, retrieve the commission matrix.
+6. Compute the commission percentage.
+7. Apply commission to all contracts.
+8. Update CoreView with this new commission.
+
 
 ```python
 class CommissionMatrix:
@@ -97,6 +108,7 @@ class CommissionMatrix:
         # Iterate through the x-axis to find where between which value the penetration index lands.
         # Get the index.
 ```
+
 ### Clawback lambda
 The clawback lambda will be triggered by a Cronjob event the first day of every month. 
 
@@ -142,28 +154,33 @@ The actual matrix along with the x-axis and y-axis will be parsed into json. The
     [
       1.02,
       1.03,
-      1.04
-    ],
-    [
-      1.02,
-      1.03,
+      1.04,
       1.05
     ],
     [
+      1.02,
+      1.03,
+      1.05,
+      1.06
+    ],
+    [
       1.03,
       1.02,
-      1.03
+      1.03,
+      1.04
     ]
   ],
   "x-axis": [
     0.6,
     0.7,
-    0.8
+    0.8,
+    0.9
   ],
   "y-axis": [
     0.6,
     0.7,
-    0.8
+    0.8,
+    0.9
   ]
 }
 ```
