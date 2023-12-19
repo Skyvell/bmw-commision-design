@@ -5,8 +5,8 @@
 ### Functionality
 - Upload Excel data files containing Commission Matrices to AWS. These data should be easily accessible in order to do commission calculations. Should support overwriting of Matrices.
 - Upload Excel data files containing agent volume target sales data. Should support overwriting of agent sales targets.
-- Mountly read sales data from Midas API for the previous month, calculate the commission earned by agents, and write this data to CoreView.
-- Mountly read the clawback list, see if any of the contracts were cancelled within 6 months. If it was cancelled within 6 months, the commission that was paid for that contract should be nullified.
+- Montly read sales data from Midas API for the previous month, calculate the commission earned by agents, and write this data to CoreView.
+- Montly read the clawback list, see if any of the contracts were cancelled within 6 months. If it was cancelled within 6 months, the commission that was paid for that contract should be nullified.
 
 ### Tools
 - Github Actions for CI/CD (requirement BWM).
@@ -25,7 +25,7 @@ This is how the Matrix data will be structured in Excel.
 
 ![Commision Matrix Data](./data_formats/matrix_dummy_data.png)
 
-The matrix placement in the excel file should follow a standardised layout. A proposition is that the first matrix should be placed in the top left corner, and every new matrix placed to the right of the previous matrix, with a blank column in between. Another option is a new matrix on every "page"of the excel document. The files should be uploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order to uniquely identify that the file is a Matrix file, and which year the matrices should apply to. I suggest matrix_yyyy.xlsx, but anything that follows the previously mentioned prerequisites should suffice.
+The matrix placement in the excel file should follow a standardised layout. A proposition is that the first matrix should be placed in the top left corner, and every new matrix placed to the right of the previous matrix, with a blank column in between. Another option is a new matrix on every "page" of the excel document. The files should be uploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order to uniquely identify that the file is a Matrix file, and which year the matrices should apply to. I suggest matrix_yyyy.xlsx, but anything that follows the previously mentioned prerequisites should suffice.
 
 ### Sales volume targets file structure and data
 This is how the Agent Sales Target Volumes data will look.
@@ -56,7 +56,7 @@ target_volume_achieved = financed_sales_volume_by_agent / target_financed_sales_
 The rest of the data required for the commission calculation is pulled from DynamoDB (commission matrix and target financed sales volumes).
 
 #### Clawback calculation
-A clawback list will be fetched from Midas. The clawback lists contain a list of terminated contracts the previous mounth. This list will be used to determine if there should be any clawbacks on previously issued commissions. 
+A clawback list will be fetched from Midas. The clawback lists contain a list of terminated contracts the previous month. This list will be used to determine if there should be any clawbacks on previously issued commissions. 
 
 ### Midas API 
 **TODO - Waiting for documentation.**
@@ -72,7 +72,7 @@ Event-driven serverless architecture will be used for all functionality. The fun
 ![Initial draft of architecture](architecture.svg)
 
 ### Calculation lambda
-The calculation lambda should be triggered via a cronjob at the first date of every month.
+The calculation lambda should be triggered via a Cronjob at the first date of every month.
 
 ```python
 class CommissionMatrix:
@@ -98,10 +98,10 @@ class CommissionMatrix:
         # Get the index.
 ```
 ### Clawback lambda
-The clawback lambda will be triggered by a Cronjob event the first day of every mounth. 
+The clawback lambda will be triggered by a Cronjob event the first day of every month. 
 
 It will do the following:
-1. Retreive the clawback list from Midas.
+1. Retrieve the clawback list from Midas.
 2. Check if any of the cancelled contracts in the clawback list was cancelled within a 6 month period.
 3. For all the contracts that were cancelled within a 6 month period, compute the added commission.
 4. In CoreView, deduct the commission that agent earned from that contract.
