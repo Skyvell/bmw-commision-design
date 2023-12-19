@@ -35,8 +35,10 @@ This is how the Agent Sales Target Volumes data will look.
 This looks pretty straigh forward from a data processing perspective. The files should be uploaded in .xlsx format. The .xlsx files should follow a pre-determined naming convention, in order to uniquely identify that the file is a Sales Target file, and which year it represents. I suggest sales_targets_yyyy.xlsx.
 
 ### Midas API 
+**TODO - Waiting for documentation.**
 
 ### Core View integration
+**TODO - Waiting for documentation.**
 
 ## Architecture
 
