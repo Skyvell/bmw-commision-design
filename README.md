@@ -5,45 +5,48 @@
 ### Functionality
 - Upload Excel data files containing Comission Matrixes to AWS. These data should be easily accessible in order to do commission calculations. Should support overwriting of Matrixes.
 - Upload Excel data files containing agent volume target sales data. Should support overwriting of agent sales targets.
-- Montly read sxales data from Midas API for the previous month, calculate the commission earned by agents and write this data to CoreView.
+- Montly read sales data from Midas API for the previous month, calculate the commission earned by agents, and write this data to CoreView.
 - Montly read the clawback list, see if any of the contracts were canceled within 6 months. If it was canceled within 6 months, the commission that was paid for that contract should be nullfied.
 
 ### Tools
 - Github Actions for CI/CD (requirement BWM).
 - Terraform for infrastructure (requirement BMW).
-- Python will be used for lambda development since this project is mostly about data processing, which Python excels at.
+- Python will be used for lambda development since this project is mostly about data processing, which Python excells at.
 
 ### Throughput needs
 - The files to be uploaded are relativley small. Lambda will be used for parsing.
 - The data to be read and processed monthly from midas is not very substantial. Lambda used for this as well.
 
 ### AWS components
-AWS s3, Lambda, DynamoDB will cover the scalability and throuhput needs of the product.
+AWS s3, Lambda, DynamoDB will cover the scalability and throughput needs of the product.
 
 ### Commission matrix file structure and data
 This is how the Matrix data will be structured in Excel.
 
 ![Commision Matrix Data](./data_formats/matrix_dummy_data.png)
 
-The matrix placement in the excel file should follow a standardised layout. A proposition is that the first matrix should be placed in the top leftcorner and every new matrix placed to the right of the previous matrix, with a blank column in between. Another option is a new matrix on every "page"of the excel document. The files should be upploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order touniquely identify that the file is a Matrix file and which year the matrixes should apply to. I suggest matrix_yyyy.xlsx, but anything that follows thepreviously mentioned prerequisites should suffice.
+The matrix placement in the excel file should follow a standardised layout. A proposition is that the first matrix should be placed in the top left corner, and every new matrix placed to the right of the previous matrix, with a blank column in between. Another option is a new matrix on every "page"of the excel document. The files should be upploaded in .xlsx format. The .xlsx files should follow a pre-determined naming convention, in order to uniquely identify that the file is a Matrix file, and which year the matrixes should apply to. I suggest matrix_yyyy.xlsx, but anything that follows the previously mentioned pre-requisites should suffice.
 
 ### Sales volume targets file structure and data
 This is how the Agent Sales Target Volumes data will look.
 
 ![Volume Targets Data](./data_formats/volume_targets_dummy_data.png)
 
-This looks pretty straigh forward from a data processing perspective. The files should be upploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order to uniquely identify that the file is a Sales Target file and which year it represents. I suggest sales_targets_yyyy.xlsx.
+This looks pretty straigh forward from a data processing perspective. The files should be uploaded in .xlsx format. The .xlsx files should follow a pre-determined naming convention, in order to uniquely identify that the file is a Sales Target file, and which year it represents. I suggest sales_targets_yyyy.xlsx.
 
-### Midas API
+### Midas API 
 
 ### Core View integration
 
-## Architecture overview 
+## Architecture
+
+### Overview
+Event-driven serverless architecture will be used for all functionality. The functionality can be devided into two parts. The first part (blue) involves uploading and parsing data. Here S3 will be used to upload and store Matrix and Sales Target files. Upon upload a lambda will parse the data in these files into DynamoDB according to the database schema. The second part (green) involves reading data from an external AWS account, perform calculations on this data, and write the result to CoreView.
 
 ![Initial draft of architecture](architecture.svg)
 
 ## Calculation lambda
-The calculation labmda should be triggered via a cronjob at the first date of every month. 
+The calculation lamda should be triggered via a cronjob at the first date of every month.
 
 ```python
 class CommissionMatrix:
@@ -68,7 +71,6 @@ class CommissionMatrix:
         # Iterate through the x-axis to find where between which value the penetration index lands.
         # Get the index.
 ```
-
 
 **Data needed for commission caculcation:**
 - Total sales for specific agents in every market for specific agents.
