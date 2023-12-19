@@ -40,7 +40,7 @@ This looks pretty straigh forward from a data processing perspective. The files 
 To do the commission calculations the following data is needed from Midas:
 - The total number of financed contracts per agent per market (total_number_of_financed_contracts).
 - The total number of contracts per agent per market (total_number_of_contracts).
-- Total financed sales volume per agent per market.
+- Total financed sales volume per agent per market (financed_sales_volume_by_agent).
 
 This is how the penetration rate is calculated:
 
