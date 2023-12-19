@@ -148,7 +148,7 @@ Considerations:
 ## Database design
 Volume targets will be parsed into the VolumeTargets table. Commission matrixes will be parsed into the CommissionMatrixes table. Since the partition key does not uniquely identify an item, a composite key will be used. 
 
-![Initial draft of architecture](database.svg)
+![Initial draft of architecture](dbdesign.svg)
 
 The actual matrix along with the x-axis and y-axis will be parsed into json. The x-axis refers to the penetration rate and y-axis referes to the sales folume target percentage. Below is an example of a parsed matrix:
 
