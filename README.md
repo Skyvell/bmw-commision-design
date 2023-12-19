@@ -78,8 +78,8 @@ class CommissionMatrix:
 - Total sales for specific agents in every market for specific agents.
 - Total sales for all agents combined in every market.
 
-penetration_rate = sales_volume_by_agent / total_sales_volume
-target_volume_achieved = sales_volume_by_agent / target_sales_volume_for_agent
+penetration_rate = number_of_financed_contracts_sold / total_number_of_contracts_sold
+target_volume_achieved = financed_sales_volume_by_agent / target_financed_sales_volume_by_agent
 
 Commission is calculated from the matrix by using penetration_rate and target_volume_achieved.
 
@@ -97,16 +97,14 @@ Get data from database:
 ## Core View integration
 
 ## Commission matrix file structure
-This is how the Matrix data will be structured in Excel. 
+This is how the Matrix data will be structured in Excel.
 
 ![Commision Matrix Data](./data_formats/matrix_dummy_data.png)
 
-What to decide on:
-- Naming convention for matrix file (need to uniquely identify year and matrix file).
-- File extention (.xlsx works fine). Anything that can be loaded with Pandas.
-- Standardized Matrix placement in excel file. This could be one matrix per page with the market being the name of the page, or every matrix separated by an empty column with the name of the matrix market should be included in file.
+The matrix placement in the excel file should follow a standardised layout. A proposition is that the first matrix should be placed in the top leftcorner and every new matrix placed to the right of the previous matrix, with a blank column in between. Another option is a new matrix on every "page"of the excel document. The files should be upploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order touniquely identify that the file is a Matrix file and which year the matrixes should apply to. I suggest matrix_yyyy.xlsx, but anything that follows thepreviously mentioned prerequisites should suffice. 
 
-Book a meeting for this.
+
+
 
 ## Sales volume targets file structure
 This is how the Agent Sales Target Volumes data will look. This looks pretty straigh forward from a data processing perspective.
