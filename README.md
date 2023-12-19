@@ -118,27 +118,12 @@ Considerations:
 - Pandas is a pretty big library. Lambda limitation: 50MB zipped, 250MB unzipped. I might need to use a lightweight version of Pandas; this can be acheived with lambda layers. If the the package standard package fits into the size requirements, it might still be a good idea to use lambda layers to increase deployment speed.
 
 ## Database design
-Volume targets will be parsed into the VolumeTargets table. Commission matrixes will be parseed into the CommissionMatrixes table. Since the partition key does not uniquely identify an item, a composite key will be used. 
+Volume targets will be parsed into the VolumeTargets table. Commission matrixes will be parsed into the CommissionMatrixes table. Since the partition key does not uniquely identify an item, a composite key will be used. 
 
 ![Initial draft of architecture](database.svg)
 
-The PenetrationRanges and VolumeTargetRanges attributes will be on the form
-```python
-ranges = [
-    ["lower_bound_1", "upper_bound_1"],
-    ["lower_bound_2", "upper_bound_2"],
-    ["lower_bound_n", "upper_bound_n"],
-]
-```
-Each range in the list representing a index to the right row or column in the matrix. The PenetrationRanges list will need to be reversed in order for the index or each range to represent the correct row in the matrix.
+The actual matrix along with the x-axis and y-axis will be parsed into json. The x-axis refers to the penetration rate and y-axis referes to the sales folume target percentage. Below is an example of a parsed matrix:
 
-Another option would be to store the matrix and its x-axis and y-axis ranges as a single json object in the database. This would be good for loading the structure into a python object. Something like:
-
-```python
-commission_matrix = CommissionMatrix.from_json(json)
-```
-
-Here is an example how a commission matrix would be parsed into json:
 ```json
 {
   "matrix": [
@@ -169,10 +154,9 @@ Here is an example how a commission matrix would be parsed into json:
     0.8
   ]
 }
-
 ```
 
-## Questions
-- Will there be multiple markets in volume targets?
-- In the Matrix dummy data, will the penetration rate and volume targets be uploaded with it? This will allow for arbitrary commission matrix to be uploaded. Otherwise I need to know the percentages in advance. --> 
-- Will the target volume be in USD?
+This would design would allow for easy parsing from DynamoDB into a Python Object describing the commission matrix and associated functionality:
+```python
+commission_matrix = CommissionMatrix.from_json(json)
+```
