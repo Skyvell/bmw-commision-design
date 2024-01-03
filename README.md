@@ -1,4 +1,4 @@
-# Commission calculation - 
+# Commission Calculation Microservice - Requirements, architecture, CI/CD, testing and timeline
 
 ## Introduction
 This document serves as a proposal development guide and for an automated system designed to manage and calculate sales commissions for BMW's sales agents. The purpose of this system is to simplify the current commission calculation process, reduce potential errors, and streamline the overall process.
