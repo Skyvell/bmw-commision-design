@@ -117,6 +117,21 @@ class CommissionMatrix:
         # Get the index.
 ```
 
+#### Testing
+All standalone classes and functions should be unit tested.
+
+- Should I populate dynamodb with Matrices and Sales target data or mock these? It should be alright to mock since the parsing of data into DynamoDB will be tested seperately. This could be assumed to be accurate.
+
+The following test should be done programatically every time the code is deployed to AWS:
+1. Initialize mock services for Midas, DynamoDB, and CoreView.
+2. Trigger the Calculation Lambda with a simulated cron job.
+3. Validate retrieved data against mock services.
+4. Check computation results for accuracy.
+5. Confirm the correct updates are made to CoreView.
+6. Use logs and metrics to validate the process and ensure no errors occurred.
+
+Question: Should we set up a staging environment for CoreView so we can test the writes and not just mock it?
+
 ### Clawback lambda
 The clawback lambda will be triggered by a Cronjob event the first day of every month. 
 
@@ -129,7 +144,7 @@ It will do the following:
 #### Testing
 The following test should be done programatically every time the code is deployed to AWS:
 
-1. Trigger the clawback labmda with a simulated cronjob event.
+1. Trigger the clawback lambda with a simulated cronjob event.
 2. Mock an API call to Midas and return representative data.
 3. The lambda will check for contracts that was cancelled within a 6 month period, and deduct previously applied commission.
 4. Mock the write to CoreView.
