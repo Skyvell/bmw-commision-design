@@ -1,4 +1,11 @@
-# bmw_analysis_and_design
+# Commission calculation - 
+
+## Introduction
+This document serves as a development guide and proposal for an automated system designed to manage and calculate sales commissions for BMW's sales agents. The purpose of this system is to simplify the current commission calculation process, reduce potential errors, and streamline the overall management of sales data.
+
+The proposed system will automate tasks that are traditionally manual and time-consuming, such as updating and maintaining commission matrices and agent sales targets. It will leverage cloud technologies to ensure data is managed efficiently and securely. Additionally, the system is designed to integrate smoothly with BMW's existing data infrastructure, including the Midas API and CoreView platform, to facilitate seamless data flow and access.
+
+The following sections will outline the detailed requirements, tools, and architecture for the system. They will provide insight into the functionalities it will offer, the technology stack it will use, the structure of its various components and a time estimation for the development process. Our goal is to provide BMW with a development plan for a reliable and efficient solution for commission management.
 
 ## Project requirements
 
