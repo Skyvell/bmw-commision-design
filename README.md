@@ -126,6 +126,18 @@ It will do the following:
 3. For all the contracts that were cancelled within a 6 month period, compute the added commission.
 4. In CoreView, deduct the commission that agent earned from that contract.
 
+#### Testing
+The following test should be done programatically every time the code is deployed to AWS:
+
+1. Trigger the clawback labmda with a simulated cronjob event.
+2. Mock an API call to Midas and return representative data.
+3. The lambda will check for contracts that was cancelled within a 6 month period, and deduct previously applied commission.
+4. Mock the write to CoreView.
+5. Verify with data containing the expected result that the lambda made the right calculations.
+6. Use logs and metrics to validate the process and ensure no errors occurred.
+
+Question: Should we set up a staging environment for CoreView so we can test the writes and not just mock it?
+
 ### Parsing lambda
 The parsing lambda will be triggered via an S3 Event Notification which occurs when a file is uploaded to the S3 bucket. The lambda will identify if the uploaded file is a Commission Matrix file or a Target Sales Volume file. This will be done by checking the name of the file. Depending on if the file is a Commission Matrix file or a Target Sales Volume file, different flows will be executed.
 
@@ -148,6 +160,17 @@ For every record/row in the data the following instructions will be executed:
 
 #### Considerations
 Pandas is a big library. Lambda has some size limitations; 50MB zipped and 250MB unzipped. A lightweight version of Pandas might be needed; this can be acheived with lambda layers. If the standard Pandas package fits into the size requirements, it might still be a good idea to use lambda layers to increase deployment speed.
+
+#### Testing
+The following test should be done programatically every time the code is deployed to AWS:
+
+1. Trigger Lambda by uploading a file to the S3 bucket.
+2. Lambda parses the file, identifies type, and processes it.
+3. Verify the correct DynamoDB item construction.
+4. Check that the items are written to DynamoDB accurately.
+5. Confirm that the correct flow is executed based on the file type.
+6. Revert all the changes made to DynamoDB.
+6. Use logs and metrics to validate the process and ensure no errors occurred.
 
 ## Database design
 Volume targets will be parsed into the VolumeTargets table. Commission matrixes will be parsed into the CommissionMatrixes table. Since the partition key does not uniquely identify an item, a composite key will be used. 
@@ -201,3 +224,20 @@ commission = commission_matrix.compute_commission(penrate, achieved_volume_perce
 
 ## CI/CD
 BMW has finished deployment pipelines which are applicable to this project, so no new development should be needed here, only modifications of the provided workflows. Github actions will be used. Branching strategies, secret management and access control will be managed and set by BMW.
+
+## AWS Infrastructure
+All infrastructure will be written and configured with Terraform and deployed as part of the deployment pipelines.
+
+Infrastructure to setup and configure:
+- S3 bucket.
+- DymamoDB.
+- Parser labmda.
+- Clawback lambda.
+- Calculation lambda.
+- VPC.
+- Roles with least privilige access for each of the infrastructure resources.
+
+## Testing
+
+## Time estimation
+
