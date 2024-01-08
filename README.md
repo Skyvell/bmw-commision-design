@@ -65,11 +65,11 @@ The rest of the data required for the commission calculation is pulled from Dyna
 #### Clawback calculation
 A clawback list will be fetched from Midas. The clawback lists contain a list of terminated contracts for the previous month. This list will be used to determine if there should be any clawbacks on previously issued commissions. 
 
-### Midas API 
-**TODO - Waiting for documentation.**
+### Midas
+Data from Midas will be queried directly via standard SQL queries in Amazon Athena. I have not received any additional information regarding the database.
 
 ### Core View integration
-**TODO - Waiting for documentation.**
+There is an API which I will gain access to when the project starts.
 
 ## Architecture
 
@@ -118,7 +118,7 @@ class CommissionMatrix:
 ```
 
 #### Testing
-All standalone classes and functions should be unit tested.
+All standalone classes and functions should be unit-tested.
 
 - Should I populate dynamodb with Matrices and Sales target data or mock these? It should be alright to mock since the parsing of data into DynamoDB will be tested seperately. This could be assumed to be accurate.
 
@@ -256,3 +256,65 @@ Infrastructure to setup and configure:
 
 ## Time estimation
 
+### 5. Development and Configuration
+
+- **Duration:** Variable (6-12 weeks)
+- **Factors Affecting Duration:**
+  - Complexity of the calculations and data processing logic.
+  - Integration complexity with Core View and other systems.
+  - Tool requirements of BMW (programming language, CI/CD tools etc.).
+- **Activities:**
+  - Setup AWS account for dev.
+  - Configure AWS infrastructure either with cloudformation or CDK:
+    - SQS.
+    - S3 bucket.
+    - Calculation lambda.
+    - Parsing lambda.
+    - RDS/DynamoDB.
+    - IAM roles.
+    - VPC.
+  - Develop parsing lambda.
+  - Develop calculation lambda.
+  - Develop Core View integration.
+  - Write SQL for database schemas.
+  - Unit testing.
+  - Test AWS service configurations.
+- **Output:** Working AWS infrastructure.
+
+### 6. CI/CD Implementation
+
+- **Duration:** Concurrent with Development and Configuration - Adds an additional 2 weeks.
+- **Activities:** 
+  - Set up source control.
+  - Build CI pipelines.
+  - Create CD pipelines.
+- **Output:** Fully working CI/CD pipelines.
+
+### 7. Testing
+
+- **Duration:** Concurrent with Development and Development - Adds and additonal 2-4 weeks.
+- **Activities:**.
+  - Integration tests.
+  - Test end to end flow.
+- **Output:** High test coverage and tested system.
+
+### 8. Deployment to Production
+
+- **Duration:** 1 week
+- **Activities:**
+  - Deploy the solution to the production environment.
+  - Perform final checks and validations.
+- **Output:** Live system in production.
+
+### 9. Post-Deployment Monitoring and Optimization
+
+- **Duration:** Ongoing
+- **Activities:**
+  - Monitor system performance and stability.
+  - Optimize configurations for cost, performance, and security.
+- **Output:** Optimized and stable production system.
+
+### Time Estimation Summary
+
+- **Estimated minimum duration:** 15 weeks.
+- **Estimated maximum duration:** 25 weeks.
