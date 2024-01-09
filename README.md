@@ -228,28 +228,23 @@ Infrastructure to setup and configure:
 - VPC.
 - Roles with least privilige access for each of the infrastructure resources.
 
-## Testing
-
 ## Time estimation
 
-### 5. Development and Configuration
+### Development and Configuration
 
-- **Duration:** Variable (6-12 weeks)
-- **Factors Affecting Duration:**
-  - Complexity of the calculations and data processing logic.
-  - Integration complexity with Core View and other systems.
-  - Tool requirements of BMW (programming language, CI/CD tools etc.).
+- **Duration:** 9 weeks
 - **Activities:**
   - Setup AWS account for dev.
-  - Configure AWS infrastructure either with cloudformation or CDK:
-    - SQS.
+  - Infrastrucutre as code with Terraform:
     - S3 bucket.
     - Calculation lambda.
     - Parsing lambda.
-    - RDS/DynamoDB.
+    - Clawback lambda.
+    - DynamoDB.
     - IAM roles.
     - VPC.
   - Develop parsing lambda.
+  - Develop clawback lambda.
   - Develop calculation lambda.
   - Develop Core View integration.
   - Write SQL for database schemas.
@@ -257,24 +252,22 @@ Infrastructure to setup and configure:
   - Test AWS service configurations.
 - **Output:** Working AWS infrastructure.
 
-### 6. CI/CD Implementation
+### CI/CD Implementation
 
-- **Duration:** Concurrent with Development and Configuration - Adds an additional 2 weeks.
+- **Duration:** 1 weeks.
 - **Activities:** 
-  - Set up source control.
-  - Build CI pipelines.
-  - Create CD pipelines.
+  - BWM will provide template CI/CD templates based on github actions, but I allocate some time to modify these and troubleshooting.
 - **Output:** Fully working CI/CD pipelines.
 
-### 7. Testing
+### Testing
 
-- **Duration:** Concurrent with Development and Development - Adds and additonal 2-4 weeks.
+- **Duration:** Concurrent with Development - Adds and additonal 3 weeks.
 - **Activities:**.
   - Integration tests.
   - Test end to end flow.
 - **Output:** High test coverage and tested system.
 
-### 8. Deployment to Production
+### Deployment to Production
 
 - **Duration:** 1 week
 - **Activities:**
@@ -282,7 +275,7 @@ Infrastructure to setup and configure:
   - Perform final checks and validations.
 - **Output:** Live system in production.
 
-### 9. Post-Deployment Monitoring and Optimization
+### Post-Deployment Monitoring and Optimization
 
 - **Duration:** Ongoing
 - **Activities:**
@@ -292,5 +285,4 @@ Infrastructure to setup and configure:
 
 ### Time Estimation Summary
 
-- **Estimated minimum duration:** 15 weeks.
-- **Estimated maximum duration:** 25 weeks.
+14 weeks.
