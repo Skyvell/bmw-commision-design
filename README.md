@@ -232,7 +232,7 @@ Infrastructure to setup and configure:
 
 ### Development and Configuration
 
-- **Duration:** 9 weeks
+- **Duration:** 8-9 weeks
 - **Activities:**
   - Setup AWS account for dev.
   - Infrastrucutre as code with Terraform:
@@ -249,7 +249,6 @@ Infrastructure to setup and configure:
   - Develop Core View integration.
   - Write SQL for database schemas.
   - Unit testing.
-  - Test AWS service configurations.
 - **Output:** Working AWS infrastructure.
 
 ### CI/CD Implementation
@@ -261,7 +260,7 @@ Infrastructure to setup and configure:
 
 ### Testing
 
-- **Duration:** Concurrent with Development - Adds and additonal 3 weeks.
+- **Duration:** Concurrent with Development - Adds and additonal 2-3 weeks.
 - **Activities:**.
   - Integration tests.
   - Test end to end flow.
@@ -285,4 +284,4 @@ Infrastructure to setup and configure:
 
 ### Time Estimation Summary
 
-14 weeks.
+12-14 weeks.
