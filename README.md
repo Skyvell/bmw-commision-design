@@ -234,7 +234,6 @@ Infrastructure to setup and configure:
 
 - **Duration:** 8-9 weeks
 - **Activities:**
-  - Setup AWS account for dev.
   - Infrastrucutre as code with Terraform:
     - S3 bucket.
     - Calculation lambda.
