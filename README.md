@@ -32,14 +32,14 @@ This is how the Matrix data will be structured in Excel.
 
 ![Commision Matrix Data](./data_formats/matrix_dummy_data.png)
 
-The placement of the matrix in the excel file should follow a standardised layout. A suggestion is that the first matrix should be placed in the top left corner, and every new matrix placed to the right of the previous matrix, with a blank column in between. Another option is a new matrix on every "page" of the excel document. The files should be uploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order to uniquely identify that the file is a Matrix file, and which year the matrices should apply to. I suggest matrix_yyyy.xlsx, but anything that follows the previously mentioned prerequisites should suffice.
+The placement of the matrix in the excel file should follow a standardised layout. A suggestion is that the first matrix should be placed in the top left corner, and every new matrix placed to the right of the previous matrix, with a blank column in between. Another option is a new matrix on every "page" of the excel document. The files should be uploaded in .xlsx format. The .xlsx files should follow a predetermined naming convention, in order to uniquely identify that the file is a Matrix file, and which year the matrices should apply to. The proposed naming convention is matrix_yyyy.xlsx, but anything that follows the previously mentioned prerequisites should suffice.
 
 ### Sales volume targets file structure
 This is how the Agent Sales Target Volumes data will look.
 
 ![Volume Targets Data](./data_formats/volume_targets_dummy_data.png)
 
-This looks pretty straight forward from a data processing perspective. The files should be uploaded in .xlsx format. As with the Matrix files, these files should follow a predetermined naming convention, in order to uniquely identify that the file is a Sales Target file, and which year it represents. I suggest sales_targets_yyyy.xlsx.
+This looks pretty straight forward from a data processing perspective. The files should be uploaded in .xlsx format. As with the Matrix files, these files should follow a predetermined naming convention, in order to uniquely identify that the file is a Sales Target file, and which year it represents. The proposed naming convention is sales_targets_yyyy.xlsx.
 
 ### Data needed from Midas
 
@@ -66,10 +66,10 @@ The rest of the data required for the commission calculation is pulled from Dyna
 A clawback list will be fetched from Midas. The clawback lists contain a list of terminated contracts for the previous month. This list will be used to determine if there should be any clawbacks on previously issued commissions. 
 
 ### Midas
-Data from Midas will be queried directly via standard SQL queries in Amazon Athena. I have not received any additional information regarding the database.
+Data from Midas will be queried directly via standard SQL queries in Amazon Athena. Any additional information about the database such as ER-diagrams has not been provided.
 
 ### Core View integration
-There is an API which I will gain access to when the project starts.
+BWM has an API to interact with CoreView. Access to this documentation will be given once the development starts.
 
 ## Architecture
 
@@ -259,27 +259,20 @@ Infrastructure to setup and configure:
 
 ### Testing
 
-- **Duration:** Concurrent with Development - Adds and additonal 2-3 weeks.
+- **Duration:** 2-3 weeks.
 - **Activities:**.
   - Integration tests.
   - Test end to end flow.
 - **Output:** High test coverage and tested system.
 
-### Deployment to Production
+### Deployment to Production and Handover to Operations
 
 - **Duration:** 1 week
 - **Activities:**
   - Deploy the solution to the production environment.
   - Perform final checks and validations.
+  - Hand over the finished product to operations at BMW.
 - **Output:** Live system in production.
-
-### Post-Deployment Monitoring and Optimization
-
-- **Duration:** Ongoing
-- **Activities:**
-  - Monitor system performance and stability.
-  - Optimize configurations for cost, performance, and security.
-- **Output:** Optimized and stable production system.
 
 ### Time Estimation Summary
 
