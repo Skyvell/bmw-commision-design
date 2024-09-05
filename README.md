@@ -76,7 +76,7 @@ BWM has an API to interact with CoreView. Access to this documentation will be g
 ### Overview
 Event-driven serverless architecture will be used for all functionality. The functionality can be divided into two parts. The first part (green) involves uploading and parsing data. Here S3 will be used to upload and store Matrix and Sales Target files. Upon upload a lambda will parse the data in these files into DynamoDB according to the database schema. The second part (blue) involves reading data from an external AWS account, performing calculations on this data, and writing the result to CoreView.
 
-![Initial draft of architecture](architecture.svg)
+![Initial draft of architecture](./architecture/architecture.svg)
 
 ### Calculation lambda
 The calculation lambda should be triggered via a Cronjob at the first date of every month.
@@ -166,7 +166,7 @@ The following test should be done programatically every time the code is deploye
 ## Database design
 Volume targets will be parsed into the VolumeTargets table. Commission matrixes will be parsed into the CommissionMatrixes table. Since the partition key does not uniquely identify an item, a composite key will be used. 
 
-![Initial draft of architecture](dbdesign.svg)
+![Initial draft of architecture](./architecture/dbdesign.svg)
 
 The actual matrix along with the x-axis and y-axis will be parsed into json. The x-axis refers to the penetration rate and y-axis refers to the sales volume target percentage. Below is an example of a parsed matrix:
 
